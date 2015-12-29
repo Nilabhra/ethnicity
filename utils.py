@@ -122,10 +122,10 @@ def ethnicity_features(name, kind='last'):
     name_first_three = name[:3] if len(name) > 2 else None
     name_first_four = name[:4] if len(name) > 3 else None
 
-    name_last = name[-1] if len(name) > 4 else None
-    name_last_two = name[-2:] if len(name) > 5 else None
-    name_last_three = name[-3:] if len(name) > 6 else None
-    name_last_four = name[-4:] if len(name) > 7 else None
+    name_last = name[-1]# if len(name) > 4 else None
+    name_last_two = name[-2:] if len(name) > 1 else None
+    name_last_three = name[-3:] if len(name) > 2 else None
+    name_last_four = name[-4:] if len(name) > 3 else None
     
     features = {'name_first': name_first, 'name_first_two': name_first_two,
                 'name_first_three': name_first_three, 'name_first_four': name_first_four,
