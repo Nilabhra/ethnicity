@@ -10,6 +10,7 @@ ethnicity_classifier_last_name = pickle.load(open('models/ethnicity_classifier_l
 ethnicity_classifier_first_name = pickle.load(open('models/ethnicity_classifier_first_name.pkl', 'r'))
 
 def get_results(name):
+    name = name.lower()
     gender = gender_classifier.prob_classify(gender_features(name)).__dict__['_prob_dict']
     religion = religion_classifier.prob_classify(religion_features(name)).__dict__['_prob_dict']
     
