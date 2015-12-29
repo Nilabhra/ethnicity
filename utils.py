@@ -10,11 +10,11 @@ def gender_features(name):
     first_name_first_four = first_name[:4] if len(first_name) > 3 else None
     first_name_first_five = first_name[:5] if len(first_name) > 4 else None
     
-    first_name_last = first_name[-1] if len(first_name) > 5 else None
-    first_name_last_two = first_name[-2:] if len(first_name) > 6 else None
-    first_name_last_three = first_name[-3:] if len(first_name) > 7 else None
-    first_name_last_four = first_name[-4:] if len(first_name) > 8 else None
-    first_name_last_five = first_name[-5:] if len(first_name) > 9 else None
+    first_name_last = first_name[-1]# if len(first_name) > 5 else None
+    first_name_last_two = first_name[-2:] if len(first_name) > 1 else None
+    first_name_last_three = first_name[-3:] if len(first_name) > 2 else None
+    first_name_last_four = first_name[-4:] if len(first_name) > 3 else None
+    first_name_last_five = first_name[-5:] if len(first_name) > 4 else None
     
     if first_name != last_name:
         last_name_first = last_name[0]
@@ -23,11 +23,11 @@ def gender_features(name):
         last_name_first_four = last_name[:4] if len(last_name) > 3 else None
         last_name_first_five = last_name[:5] if len(last_name) > 4 else None
         
-        last_name_last = last_name[-1] if len(last_name) > 5 else None
-        last_name_last_two = last_name[-2:] if len(last_name) > 6 else None
-        last_name_last_three = last_name[-3:] if len(last_name) > 7 else None
-        last_name_last_four = last_name[-4:] if len(last_name) > 8 else None
-        last_name_last_five = last_name[-5:] if len(last_name) > 9 else None
+        last_name_last = last_name[-1]# if len(last_name) > 5 else None
+        last_name_last_two = last_name[-2:] if len(last_name) > 1 else None
+        last_name_last_three = last_name[-3:] if len(last_name) > 2 else None
+        last_name_last_four = last_name[-4:] if len(last_name) > 3 else None
+        last_name_last_five = last_name[-5:] if len(last_name) > 4 else None
     else:
         last_name_first = None
         last_name_first_two = None
