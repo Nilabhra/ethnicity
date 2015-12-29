@@ -34,9 +34,14 @@ def hello_world():
     	name = request.form.get('name')
     	results = get_results(name)
         likely_gender = max(results['gender_results'], key=results['gender_results'].get)
+        gender_prob = 100*max(results['gender_results'].values())
         likely_religion = max(results['religion_results'], key=results['religion_results'].get)
-    	return render_template('results.html', likely_gender = likely_gender.title(),
+        religion_prob = 100*max(results['religion_results'].values())
+    	return render_template('results.html',
+            likely_gender = likely_gender.title(),
+            gender_prob = gender_prob,
             likely_religion = likely_religion.title(),
+            religion_prob = religion_prob,
             likely_ethnicity = results['likely_ethnicity'].title(),
             confidence_ethnicity = results['confidence_ethnicity'].title())
 
