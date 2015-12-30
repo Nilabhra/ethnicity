@@ -63,8 +63,10 @@ def hello_world():
     	results = get_results(name)
         likely_gender = max(results['gender_results'], key=results['gender_results'].get)
         gender_prob = 100*max(results['gender_results'].values())
+        if gender_prob == 100: gender_prob = 99.99
         likely_religion = max(results['religion_results'], key=results['religion_results'].get)
         religion_prob = 100*max(results['religion_results'].values())
+        if religion_prob == 100: religion_prob = 99.99
     	return render_template('results.html',
             likely_gender = likely_gender.title(),
             gender_prob = gender_prob,
