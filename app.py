@@ -19,17 +19,15 @@ first_name_simply_marry_counts = json.load(open('json_counts/first_name_simply_m
 last_name_simply_marry_counts = json.load(open('json_counts/last_name_simply_marry_counts.json', 'r'))
 first_name_religion = json.load(open('json_counts/first_name_religion.json', 'r'))
 last_name_religion = json.load(open('json_counts/last_name_religion.json', 'r'))
-#first_name_ethnicity = json.load(open('json_counts/first_name_ethnicity.json', 'r'))
-#last_name_ethnicity = json.load(open('json_counts/last_name_ethnicity.json', 'r'))
 
 def get_results(name):
     name = name.lower()
     first_name = name.split()[0]
     last_name = name.split()[-1] if ' ' in name else ''
 
-    if first_name_cbse_counts.get(first_name, 0) >= 25 and max(first_name_gender[first_name].values()) > 0.95:
+    if first_name_cbse_counts.get(first_name, 0) >= 25 and max(first_name_gender[first_name].values()) > 0.98:
         gender = first_name_gender[first_name]
-    elif last_name_cbse_counts.get(last_name, 0) >= 25 and max(last_name_gender[last_name].values()) > 0.95:
+    elif last_name_cbse_counts.get(last_name, 0) >= 25 and max(last_name_gender[last_name].values()) > 0.98:
         gender = last_name_gender[last_name]
     else:
         gender = gender_classifier.prob_classify(gender_features(name)).__dict__['_prob_dict']
