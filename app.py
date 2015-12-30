@@ -9,24 +9,23 @@ gender_classifier = pickle.load(open('models/gender_classifier.pkl', 'r'))
 religion_classifier = pickle.load(open('models/religion_classifier.pkl', 'r'))
 ethnicity_classifier_last_name = pickle.load(open('models/ethnicity_classifier_last_name.pkl', 'r'))
 ethnicity_classifier_first_name = pickle.load(open('models/ethnicity_classifier_first_name.pkl', 'r'))
+
 first_name_cbse_counts = json.load(open('json_counts/first_name_cbse_counts.json', 'r'))
 last_name_cbse_counts = json.load(open('json_counts/last_name_cbse_counts.json', 'r'))
 first_name_gender = json.load(open('json_counts/first_name_gender.json', 'r'))
 last_name_gender = json.load(open('json_counts/last_name_gender.json', 'r'))
+
 first_name_simply_marry_counts = json.load(open('json_counts/first_name_simply_marry_counts.json', 'r'))
 last_name_simply_marry_counts = json.load(open('json_counts/last_name_simply_marry_counts.json', 'r'))
-first_name_ethnicity = json.load(open('json_counts/first_name_ethnicity.json', 'r'))
-last_name_ethnicity = json.load(open('json_counts/last_name_ethnicity.json', 'r'))
 first_name_religion = json.load(open('json_counts/first_name_religion.json', 'r'))
 last_name_religion = json.load(open('json_counts/last_name_religion.json', 'r'))
+#first_name_ethnicity = json.load(open('json_counts/first_name_ethnicity.json', 'r'))
+#last_name_ethnicity = json.load(open('json_counts/last_name_ethnicity.json', 'r'))
 
 def get_results(name):
     name = name.lower()
     first_name = name.split()[0]
-    if ' ' not in first_name:
-        last_name = ''
-    else:
-        last_name = name.split()[-1]
+    last_name = name.split()[-1] if ' ' in name else ''
 
     if first_name_cbse_counts.get(first_name, 0) >= 25 and max(first_name_gender[first_name].values()) > 0.95:
         gender = first_name_gender[first_name]
@@ -36,10 +35,10 @@ def get_results(name):
         gender = gender_classifier.prob_classify(gender_features(name)).__dict__['_prob_dict']
         gender = {i: 2**gender[i] for i in gender}
 
-    if first_name_simply_marry_counts.get(first_name, 0) >= 5 and max(first_name_religion[first_name].values()) > 0.95:
-        religion = first_name_religion[first_name]
-    elif last_name_simply_marry_counts.get(last_name, 0) >= 5 and max(last_name_religion[last_name].values()) > 0.95:
+    if last_name_simply_marry_counts.get(last_name, 0) >= 5 and max(last_name_religion[last_name].values()) > 0.95:
         religion = last_name_religion[last_name]
+    elif first_name_simply_marry_counts.get(first_name, 0) >= 5 and max(first_name_religion[first_name].values()) > 0.95:
+        religion = first_name_religion[first_name]
     else:
         religion = religion_classifier.prob_classify(religion_features(name)).__dict__['_prob_dict']
         religion = {i: 2**religion[i] for i in religion}
