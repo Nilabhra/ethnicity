@@ -35,8 +35,6 @@ def get_results(name):
 
     if last_name_simply_marry_counts.get(last_name, 0) >= 5 and max(last_name_religion[last_name].values()) > 0.98:
         religion = last_name_religion[last_name]
-    elif first_name_simply_marry_counts.get(first_name, 0) >= 5 and max(first_name_religion[first_name].values()) > 0.98:
-        religion = first_name_religion[first_name]
     else:
         religion = religion_classifier.prob_classify(religion_features(name)).__dict__['_prob_dict']
         religion = {i: 2**religion[i] for i in religion}
